@@ -1,0 +1,9 @@
+.agents
+.DS_Store
+node_modules/
+**/node_modules/
+dist/
+build/
+.env
+.env.local
+.env.*.local

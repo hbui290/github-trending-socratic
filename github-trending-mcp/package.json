@@ -1,0 +1,11 @@
+{
+  "name": "github-trending-mcp",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for combining GitHub Trending and Trendshift.io",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.28.0",
+    "cheerio": "^1.0.0-rc.12"
+  }
+}
