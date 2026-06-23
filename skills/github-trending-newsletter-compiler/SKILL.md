@@ -17,23 +17,25 @@ Kỹ năng này được lưu trữ tại: `skills/github-trending-newsletter-co
 ## 🛠️ Quy trình Thực thi Kỹ thuật (Execution Pipeline)
 
 ### Pha 1: Lấy danh sách xu hướng hợp nhất (Merged Data Acquisition)
-1.  **Gọi Tool:** Gọi `github-trending-mcp:get_trending` với các tham số tương ứng với chu kỳ yêu cầu:
-    *   `period`: `"daily"` (hàng ngày), `"weekly"` (hàng tuần), hoặc `"monthly"` (hàng tháng).
-    *   `source`: `"both"` (thu thập gộp dữ liệu trùng từ cả GitHub và Trendshift).
-    *   `language`: (Tùy chọn) lọc theo ngôn ngữ lập trình cụ thể nếu người dùng yêu cầu.
-2.  **Giới hạn số lượng dự án:**
-    *   **Daily (Hàng ngày):** Chọn lọc top 15 dự án đầu tiên.
-    *   **Weekly (Hàng tuần):** Chọn lọc top 18 dự án đầu tiên.
-    *   **Monthly (Hàng tháng):** Chọn lọc top 20 dự án đầu tiên.
+*   **MCP Tool sử dụng:** `github-trending-mcp:get_trending`
+*   **Cấu hình tham số:**
+    - `period`: `"daily"` (hàng ngày), `"weekly"` (hàng tuần), hoặc `"monthly"` (hàng tháng).
+    - `source`: `"both"` (thu thập gộp dữ liệu trùng từ cả GitHub và Trendshift).
+    - `language`: (Tùy chọn) lọc theo ngôn ngữ lập trình cụ thể nếu người dùng yêu cầu.
+*   **Giới hạn số lượng dự án đầu ra:**
+    - **Daily (Hàng ngày):** Top 15 dự án.
+    - **Weekly (Hàng tuần):** Top 18 dự án.
+    - **Monthly (Hàng tháng):** Top 20 dự án.
 
 ### Pha 2: Trích xuất siêu dữ liệu chi tiết (Metadata Extraction)
-Với mỗi dự án trong danh sách được chọn, thực hiện:
-1.  **Gọi Tool:** Gọi `github-trending-mcp:get_repo_details` với tham số `repoPathOrId` (truyền vào `owner/name` của dự án từ GitHub hoặc ID Trendshift).
-2.  **Đọc và lọc dữ liệu:** Trích xuất các trường dữ liệu cần thiết:
-    *   Đường dẫn gốc của dự án (`githubUrl`).
-    *   Ngôn ngữ lập trình chính (`language`).
-    *   Chỉ số thảo luận mạng xã hội (`mentions` từ Hacker News, Reddit, X).
-    *   Nội dung tóm tắt README của dự án.
+*   **MCP Tool sử dụng:** `github-trending-mcp:get_repo_details`
+*   **Cấu hình tham số:**
+    - `repoPathOrId`: `owner/name` của dự án từ GitHub hoặc ID Trendshift.
+*   **Dữ liệu cần trích xuất:**
+    - Đường dẫn gốc của dự án (`githubUrl`).
+    - Ngôn ngữ lập trình chính (`language`).
+    - Chỉ số thảo luận mạng xã hội (`mentions` từ Hacker News, Reddit, X).
+    - Nội dung tóm tắt README của dự án.
 
 ### Pha 3: Ánh xạ cấu trúc dữ liệu bảng (Data Schema Mapping)
 Sắp xếp dữ liệu đã được Nhạc trưởng biên soạn thông qua các kỹ năng viết lách để đưa vào các cột tương ứng trong bảng:
