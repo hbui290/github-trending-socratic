@@ -1,12 +1,8 @@
 # GitHub Trending Socratic
 
-![MCP Server](https://img.shields.io/badge/MCP-Server-blue.svg)
-
-![Node.js](https://img.shields.io/badge/Node.js-%3E%3D%2018.0.0-green.svg)
-
-![Language](https://img.shields.io/badge/Language-Vietnamese-red.svg)
-
-![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
+<p align="center">
+  <img src="https://img.shields.io/badge/MCP-Server-blue.svg" alt="MCP Server" />&nbsp;&nbsp;<img src="https://img.shields.io/badge/Node.js-%3E%3D%2018.0.0-green.svg" alt="Node.js" />&nbsp;&nbsp;<img src="https://img.shields.io/badge/Language-Vietnamese-red.svg" alt="Language" />&nbsp;&nbsp;<img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License" />
+</p>
 
 An automated AI-powered system that retrieves, merges, and compiles daily, weekly, or monthly technology newsletters in Vietnamese. It aggregates data from both **GitHub Trending** and **Trendshift.io**, retrieves social discussion sentiment (Hacker News, Reddit, X), and leverages specialized copywriting skills to translate abstract technical jargon into accessible Socratic analogies for non-technical audiences.
 
