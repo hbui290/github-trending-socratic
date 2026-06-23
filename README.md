@@ -71,7 +71,7 @@ graph TD
   - `explain-like-socrates`: Standard Socratic analogy formulation rules.
   - `copywriting-psychologist`: Guidance for writing hook headlines based on real-world user pain points.
   - `beautiful-prose` & `avoid-ai-writing`: Rules for natural prose style, stripping away common AI clichés (AI-isms).
-- `reports/`: Directory where published newsletter reports (Markdown format with HTML tables) are saved, categorized by month (e.g., \[reports/2026_06/\](file:///Users/winston/Desktop/github-trending-nontech/reports/2026_06/)).
+- `reports/`: Directory where published newsletter reports (Markdown format with HTML tables) are saved, categorized by month (e.g., [reports/2026_06/](reports/2026_06/)).
 - `AGENTS.md`: High-level orchestration guide at the workspace root directing the AI assistant through the newsletter compilation workflow.
 - `.gitignore`: Excludes system junk, environment files (`.env`), dependency folders (`node_modules/`), and the temporary cache file `github-trending-socratic-mcp/.temp_trending_data.json`.
 
@@ -98,7 +98,7 @@ Register the local MCP server in your IDE's `mcp_config.json`:
     "github-trending-socratic-mcp": {
       "command": "node",
       "args": [
-        "/Users/winston/Desktop/github-trending-nontech/github-trending-socratic-mcp/index.js"
+        "/absolute/path/to/your/workspace/github-trending-socratic-mcp/index.js"
       ],
       "env": {
         "GITHUB_TOKEN": "YOUR_GITHUB_TOKEN_OPTIONAL"

@@ -40,10 +40,10 @@ Iterate through the repositories in the cache. For each repository, perform the 
 - **Save & Clean:** **[Skill: [github-trending-layout-spec](skills/github-trending-layout-spec/SKILL.md)]** Write the `.md` report to the designated monthly directory specified in Section 3 (Output Storage Spec) of the layout spec, then delete the temporary cache file.
 
 ## Style & Format Reference
-Refer to the existing reports in the [reports/2026_06/](file:///Users/winston/Desktop/github-trending-nontech/reports/2026_06/) directory as gold-standard examples of copywriting tone, Socratic metaphors, and HTML layout structure:
-- **Daily Report:** [daily_2026_06_23.md](file:///Users/winston/Desktop/github-trending-nontech/reports/2026_06/daily_2026_06_23.md)
-- **Weekly Report:** [weekly_2026_W26.md](file:///Users/winston/Desktop/github-trending-nontech/reports/2026_06/weekly_2026_W26.md)
-- **Monthly Report:** [monthly_2026_06.md](file:///Users/winston/Desktop/github-trending-nontech/reports/2026_06/monthly_2026_06.md)
+Refer to the existing reports in the [reports/2026_06/](reports/2026_06/) directory as gold-standard examples of copywriting tone, Socratic metaphors, and HTML layout structure:
+- **Daily Report:** [daily_2026_06_23.md](reports/2026_06/daily_2026_06_23.md)
+- **Weekly Report:** [weekly_2026_W26.md](reports/2026_06/weekly_2026_W26.md)
+- **Monthly Report:** [monthly_2026_06.md](reports/2026_06/monthly_2026_06.md)
 
 ## Style Constraints (Mandatory)
 - **Absolutely Ban AI-isms:** Do not use cliché AI phrases (e.g., "kỷ nguyên số", "về cốt lõi", "tóm lại", "không chỉ X mà còn Y").
