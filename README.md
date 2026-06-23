@@ -40,7 +40,6 @@ graph TD
 ## 📂 Project Structure
 
 ```text
-.
 ├── .gitignore
 ├── AGENTS.md
 ├── LICENSE
