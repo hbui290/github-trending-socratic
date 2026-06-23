@@ -1,66 +1,62 @@
 ---
 name: github-trending-newsletter-compiler
-description: "System instructions for compiling, analyzing, and formatting non-technical daily, weekly, and monthly GitHub Trending newsletters in Vietnamese by using github-trending-mcp."
+description: "Algorithmic execution pipeline, tool calls, and document layout schemas for the Vietnamese GitHub Trending compiler."
 triggers: "github trending, bản tin trending, reports/YYYY_MM/daily_*.md, reports/YYYY_MM/weekly_*.md, reports/YYYY_MM/monthly_*.md"
 category: workflows-and-management
 tags: [github, trending, newsletter, vietnamese, curation, trendshift, mcp]
 ---
 
-# GitHub Trending Newsletter Compiler Directive
+# GitHub Trending Newsletter Compiler Pipeline (SKILL.md)
 
-You are a professional copywriting and Socratic agent. Generate high-quality, non-technical newsletters in **Vietnamese** by cross-referencing and compiling repositories from both Trendshift and GitHub Trending.
+Tài liệu này đặc tả quy trình kỹ thuật, các công cụ gọi (tools) và định dạng xuất bản (schema) của tệp báo cáo bản tin xu hướng công nghệ.
 
-## When to Use
+---
 
-- When the user asks to compile a daily, weekly, or monthly GitHub trending newsletter or report.
-- When file edits match the trigger pattern `reports/YYYY_MM/daily_YYYY_MM_DD.md`, `reports/YYYY_MM/weekly_YYYY_Www.md`, or `reports/YYYY_MM/monthly_YYYY_MM.md`.
+## 🔗 Các Skill bổ trợ liên kết
 
-## Required Skills
+Quy trình này sẽ gọi nạp và kế thừa các chỉ thị hành văn từ các skill phụ trợ nằm trong cùng thư mục `skills/`:
+*   `efficient-web-research` (Trích xuất thông tin README)
+*   `explain-like-socrates` (Ẩn dụ Socratic)
+*   `copywriting-psychologist` (Viết Hook tâm lý)
+*   `beautiful-prose` & `avoid-ai-writing` (Văn phong tiếng Việt chuẩn)
 
-Before executing the pipeline, ensure the following skill protocols are loaded:
-- `efficient-web-research`: For retrieving repository README details.
-- `explain-like-socrates`: For simplifying technical concepts using analogies.
-- `copywriting-psychologist`: For crafting problem-solution hooks.
-- `beautiful-prose` & `avoid-ai-writing`: For Vietnamese prose quality and removing AI-isms.
+---
 
-## Execution Pipeline
+## 🛠️ Quy trình thực thi (Execution Pipeline)
 
-### Phase 1: Merged Data Acquisition
-1. **Fetch from GitHub Trending MCP**:
-   - Call `github-trending-mcp:get_trending` tool with appropriate parameters:
-     - `period`: `"daily"`, `"weekly"`, or `"monthly"`
-     - `language`: optional programming language filter
-     - `source`: `"both"` (default, to retrieve merged & deduplicated results)
-     - `date`: optional Trendshift historical date parameter (e.g., `2026/25` for weekly)
-2. **Retrieve Merged List**:
-   - The tool automatically fetches from both GitHub.com/trending and Trendshift.io, merges matching repositories (labeled as `Cả hai`), retains unique ones (labeled as `GitHub` or `Trendshift`), and returns the combined list.
-   - Prioritize the top 15 repositories (Daily), 18 repositories (Weekly), or 20 repositories (Monthly).
+### Pha 1: Lấy danh sách xu hướng hợp nhất (Merged Data Acquisition)
+1.  **Gọi Tool:** Gọi `github-trending-mcp:get_trending` với các tham số:
+    *   `period`: `"daily"`, `"weekly"`, hoặc `"monthly"` dựa trên yêu cầu người dùng.
+    *   `source`: `"both"` (mặc định để lấy kết quả gộp trùng).
+    *   `language`: (Tùy chọn) Lọc theo ngôn ngữ lập trình.
+    *   `date`: (Tùy chọn) Mã tuần/tháng đối với các báo cáo lịch sử.
+2.  **Xác định quy mô danh sách:**
+    *   **Daily (Hàng ngày):** Lấy top 15 repositories đầu tiên.
+    *   **Weekly (Hàng tuần):** Lấy top 18 repositories đầu tiên.
+    *   **Monthly (Hàng tháng):** Lấy top 20 repositories đầu tiên.
 
-### Phase 2: Metadata Extraction & Research
-For each repository in the merged list:
-1. **GitHub API Lookup**: Fetch metadata and README from GitHub (`https://api.github.com/repos/[owner]/[name]`).
-2. **Analyze Content**: Read the README to classify tech class (AI, Web, Database, Mobile, etc.) and extract core usage.
-3. **Extract Mentions**: Use Trendshift metrics (mentions on Hacker News/Reddit/X) to add social engagement signals.
+### Pha 2: Trích xuất thông tin chi tiết (Metadata Extraction)
+Đối với mỗi repository trong danh sách đã chọn:
+1.  **Gọi Tool:** Gọi `github-trending-mcp:get_repo_details` với tham số `repoPathOrId` (truyền vào `owner/name` của dự án hoặc ID số từ Trendshift).
+2.  **Đọc thông tin:** Trích xuất các trường dữ liệu:
+    *   Đường dẫn và link GitHub (`githubUrl`).
+    *   Ngôn ngữ lập trình chính (`language`).
+    *   Chỉ số thảo luận (`mentions` từ Hacker News, Reddit, X nếu có).
+    *   Tóm tắt README (`readme` hoặc mô tả chính).
 
-### Phase 3: Copywriting & Socratic Translation (Vietnamese)
-Translate raw specs into natural, engaging Vietnamese:
-- **Nguồn** (Source): State where the project is trending (`GitHub`, `Trendshift`, or `Cả hai` + HN/Reddit/X mentions).
-- **Ứng Dụng Thực Tế** (Hook): Highlight the human pain point. Formula: `[Problem/Objection] + nhưng/mà [Constraint/Hesitation]` (e.g., "Muốn làm video hoạt hình chuyên nghiệp nhưng sợ dựng khung hình"). Bold key terms.
-- **Điểm Độc Đáo** (Unique Value): Explain using simple Socratic analogies. No raw jargon (like API, database, VRAM) without a direct translation/analogy.
-- **Tính Năng Nổi Bật** (Features): List 2-3 plain bullet points `•` (under 10 words each). No emojis or symbols.
+### Pha 3: Soạn thảo nội dung (Curation & Translation)
+Lập luận dịch thuật dựa trên cấu trúc các cột:
+*   **Ứng dụng thực tế (Hook):** Áp dụng công thức `[Nỗi đau/Vấn đề người dùng] + nhưng/mà + [Trở ngại/Ngần ngại]`. Bôi đậm các cụm từ quan trọng.
+*   **Điểm độc đáo (Socratic):** Chuyển đổi các cấu trúc hạ tầng kỹ thuật (như Docker, DB, Memory, thread, API...) thành các phép ẩn dụ thực tế.
+*   **Tính năng nổi bật (Features):** Viết từ 2-3 gạch đầu dòng dạng `•` (mỗi dòng dưới 10 từ). Không thêm emojis.
 
-### Phase 4: Prose Quality Audit
-- **Active Voice**: Write declarative, active Vietnamese sentences.
-- **No AI-isms**: Ban terms like "Trong kỷ nguyên số", "Về cốt lõi", "Tóm lại là", "Đáng chú ý", "Không chỉ X mà còn Y".
-- **Brands**: Preserve brand/tool/platform names (e.g., Xiaohongshu, Bilibili, YouTube). Do not translate them.
-
-### Phase 5: Output Structure & File Naming
-- **Save Location**: Save to `reports/YYYY_MM/` directory in the active workspace.
-- **File Name**:
-  - Daily: `daily_YYYY_MM_DD.md` (e.g. `daily_2026_06_23.md`)
-  - Weekly: `weekly_YYYY_Www.md` (e.g. `weekly_2026_W25.md`)
-  - Monthly: `monthly_YYYY_MM.md` (e.g. `monthly_2026_06.md`)
-- **Format**: Output as an HTML table with exact column widths: `5% | 15% | 10% | 20% | 30% | 20%`.
+### Pha 4: Xuất bản và định dạng tệp tin (Document Schema)
+*   **Tên tệp tin & Đường dẫn lưu:**
+    *   Báo cáo ngày: `reports/YYYY_MM/daily_YYYY_MM_DD.md` (Ví dụ: `reports/2026_06/daily_2026_06_23.md`)
+    *   Báo cáo tuần: `reports/YYYY_MM/weekly_YYYY_Www.md` (Ví dụ: `reports/2026_06/weekly_2026_W25.md`)
+    *   Báo cáo tháng: `reports/YYYY_MM/monthly_YYYY_MM.md` (Ví dụ: `reports/2026_06/monthly_2026_06.md`)
+*   **Tiêu đề báo cáo:** `# Bản tin GitHub Trending [ngày DD/MM/YYYY | Tuần WW/YYYY | Tháng MM/YYYY]` đi kèm dòng chữ nhỏ *Thời gian cập nhật: HH:MM, ngày DD/MM/YYYY*.
+*   **Cấu trúc bảng HTML (Exact widths: 5% \| 15% \| 10% \| 20% \| 30% \| 20%):**
 
 ```html
 <table>
@@ -87,15 +83,11 @@ Translate raw specs into natural, engaging Vietnamese:
 </table>
 ```
 
-## Setup & Manifest Sync
+---
 
-Whenever you modify or add this skill, remember to run the sync script:
-```bash
-python3 /Users/winston/.agents/skills/update_skills.py
-```
+## 🛡️ Kiểm tra trước khi lưu (Pre-Save Verification)
 
-## Limitations
-
-- Trendshift repository detail pages may experience high latency or timeouts. Prefer `get_trending` and resolve details directly via GitHub API.
-- Do not add emojis or symbols in the HTML features column.
-- Always check that column width percentages sum to exactly 100%.
+Trước khi ghi tệp tin Markdown báo cáo, hãy kiểm tra danh sách sau:
+1.  Độ rộng các cột trong thẻ `<th>` phải tương ứng chính xác `5%`, `15%`, `10%`, `20%`, `30%`, `20%` (tổng cộng bằng đúng 100%).
+2.  Tất cả các thẻ HTML mở trong bảng phải có thẻ đóng tương ứng để tránh làm vỡ giao diện Markdown.
+3.  Cột tính năng không được chứa bất kỳ emoji nào ngoài dấu chấm tròn mặc định `•`.
