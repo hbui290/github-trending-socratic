@@ -1,5 +1,5 @@
 {
-  "name": "github-trending-mcp",
+  "name": "github-trending-socratic-mcp",
   "version": "1.0.0",
   "description": "Model Context Protocol server for combining GitHub Trending and Trendshift.io",
   "main": "index.js",

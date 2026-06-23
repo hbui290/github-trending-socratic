@@ -7,3 +7,4 @@ build/
 .env
 .env.local
 .env.*.local
+github-trending-socratic-mcp/.temp_trending_data.json

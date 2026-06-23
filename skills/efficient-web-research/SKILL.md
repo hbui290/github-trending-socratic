@@ -91,6 +91,41 @@ Layer 3 (last resort):
 - If a file exceeds ~300 lines, read only the top (imports + class/function signatures)
 - Decode base64 content from API before passing to context
 
+### Step 4 — Reading & Analyzing Repos for Non-Technical Copywriting
+
+When the goal is to write a non-technical/Socratic newsletter, do not read a repository like a developer looking to deploy it. Instead, read it like a translator looking for **human pain points**, **core mechanisms**, and **relatable analogies**.
+
+#### 1. Identify the Target Audience & Pain Point (Who & Why)
+- **Locate**: Look at the top description, first paragraph, or sections named "Why", "Motivation", "Background", or "Problem".
+- **Look for**: What makes a developer's life miserable without this tool? (e.g., slow build times, manual database backups, hard-to-debug networks).
+- **Filter**: Ignore generic buzzwords like "fast", "scalable", or "developer-friendly". Extract the *concrete situation* where this tool saves the day.
+
+#### 2. Extract the Core Mechanism (How it works under the hood)
+- **Locate**: Look at sections named "How it works", "Architecture", "Design", or "Core Features".
+- **Look for**: The unique technology choice or design pattern that makes it work.
+- **Filter**: Avoid listing CLI flags or config options. Focus on the core engine (e.g., "runs entirely in the browser via WebAssembly", "replicates data using WebRTC without a central server", "compiles raw SQL into REST endpoints").
+
+#### 3. Map to Lived Experience (Analogies & Metaphors)
+- **Brainstorming Socratic Analogies**:
+  - Look at the name of the repository or its logo for physical cues (e.g., a "bridge", a "gatekeeper", a "funnel").
+  - Map the data flow to everyday concepts:
+    - *Cache/Buffer* $\rightarrow$ Short-term memory, a refrigerator, a temporary desk tray.
+    - *Load Balancer* $\rightarrow$ A traffic cop, a restaurant host, a distributor.
+    - *Database Replicant* $\rightarrow$ A team of scribes copying books in real-time, backup backups.
+    - *Compiler/Parser* $\rightarrow$ A multilingual translator, a recipe converter.
+    - *CLI Tool* $\rightarrow$ A single swiss army knife vs. a heavy toolbox.
+
+#### 4. Handle Underspecified READMEs (Deep Dive Protocol)
+- If the README has only a title and installation instructions, don't guess:
+  - **Check the File Tree**:
+    - Identify the programming language (e.g., Go, Rust, JavaScript).
+    - Locate dependency files (`package.json`, `Cargo.toml`, `go.mod`) to see what external libraries it relies on.
+    - Find the entry point file (e.g., `main.go`, `index.js`, `app.py`) to inspect the initialization logic.
+  - **Check the Examples Folder**:
+    - Look for `/examples`, `/demo`, `/tests` directories to see real-world usage patterns.
+  - **Check the Issues/PRs**:
+    - Look at the titles of recent PRs or resolved issues to understand what bugs or features the community is actively discussing.
+
 ---
 
 ## URL Protocol
