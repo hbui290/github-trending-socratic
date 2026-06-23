@@ -52,4 +52,4 @@ Khi làm việc trong repository này, Agent phải tuân thủ nghiêm ngặt c
 ## 🎯 Phân định trách nhiệm (Execution Delegation)
 
 Agent này **không tự quyết định quy trình thuật toán** cào dữ liệu hoặc định dạng bảng xuất bản. Khi được yêu cầu tổng hợp bản tin, Agent sẽ **nhường quyền thực thi (delegate)** cho skill tương ứng:
-*   Đọc và làm theo quy trình 4 pha của Skill tại: [github-trending-newsletter-compiler/SKILL.md](file:///Users/winston/Desktop/github-trending-nontech/github-trending-newsletter-compiler/SKILL.md).
+*   Đọc và làm theo quy trình 4 pha của Skill tại: [skills/github-trending-newsletter-compiler/SKILL.md](file:///Users/winston/Desktop/github-trending-nontech/skills/github-trending-newsletter-compiler/SKILL.md).
