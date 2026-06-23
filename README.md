@@ -40,10 +40,7 @@ graph TD
 ## 📂 Project Structure
 
 ```text
-├── .gitignore
 ├── AGENTS.md
-├── LICENSE
-├── README.md
 ├── github-trending-socratic-mcp/
 │   ├── index.js
 │   ├── package.json
@@ -68,7 +65,6 @@ graph TD
   - `beautiful-prose` & `avoid-ai-writing`: Rules for natural prose style, stripping away common AI clichés (AI-isms).
 - `reports/`: Directory where published newsletter reports (Markdown format with HTML tables) are saved, categorized by month (e.g., [reports/2026_06/](reports/2026_06/)).
 - `AGENTS.md`: High-level orchestration guide at the workspace root directing the AI assistant through the newsletter compilation workflow.
-- `.gitignore`: Excludes system junk, environment files (`.env`), dependency folders (`node_modules/`), and the temporary cache file `github-trending-socratic-mcp/.temp_trending_data.json`.
 
 ---
 
