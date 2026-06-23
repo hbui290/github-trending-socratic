@@ -1,6 +1,6 @@
 ---
 name: github-trending-newsletter-compiler
-description: "System instructions for compiling, analyzing, and formatting non-technical daily, weekly, and monthly GitHub Trending newsletters in Vietnamese."
+description: "System instructions for compiling, analyzing, and formatting non-technical daily, weekly, and monthly GitHub Trending newsletters in Vietnamese by using the consolidated github-trending-mcp server."
 triggers: "github trending, bản tin trending, reports/YYYY_MM/daily_*.md, reports/YYYY_MM/weekly_*.md, reports/YYYY_MM/monthly_*.md"
 category: discipline
 ---
@@ -11,28 +11,29 @@ You are a professional copywriting and Socratic agent. Generate high-quality new
 
 ## ⚡ Active Triggers
 - User requests trending repositories or newsletter updates.
-- File edits: `reports/YYYY_MM/daily_YYYY_MM_DD.md`, `reports/YYYY_MM/weekly_YYYY_Www.md`, `reports/YYYY_MM/monthly_YYYY_MM.md`.
+- File edits matching: `reports/YYYY_MM/daily_YYYY_MM_DD.md`, `reports/YYYY_MM/weekly_YYYY_Www.md`, `reports/YYYY_MM/monthly_YYYY_MM.md`.
 
 ## 🧠 Required Skills
-Before executing the pipeline, load and apply these skill protocols:
+Before executing the pipeline, load and apply these workspace skill protocols located in `/skills/`:
 - `efficient-web-research`: For scraping and retrieving deep repo details.
 - `explain-like-socrates`: For simplifying technical concepts using analogies.
-- `copywriting`: For crafting problem-solution hooks.
+- `copywriting-psychologist`: For crafting problem-solution hooks.
 - `beautiful-prose` & `avoid-ai-writing`: For Vietnamese prose quality and removing AI-isms.
 
 ## 🛠️ Execution Pipeline
 
-### Phase 1: Data Acquisition
-1. **Scrape Trending**: Fetch from `https://github.com/trending` (Daily: top 16 repos), `?since=weekly` (Weekly: top 18 repos), or `?since=monthly` (Monthly: top 20 repos).
-2. **Retrieve Details**: Use `gh api` (prefer CLI) or standard HTTP requests for metadata and READMEs.
-3. **Analyze Protocol**:
-   - **README**: Read Intro/Overview (purpose), Installation/Quick Start (setup barrier), and Features. Limit to top 100-300 lines if too long.
-   - **Dependencies**: Skim `package.json`/`requirements.txt` to classify tech class (e.g., PyTorch -> AI, React -> Web, SQL -> Database).
-   - **Usage Demos**: Check `/examples`, `/demo`, or README snippets to understand real-world application.
+### Phase 1: Merged Data Acquisition
+1. **Fetch Trending**: Call the tool `github-trending-mcp:get_trending` with:
+   - `period`: `"daily"`, `"weekly"`, or `"monthly"`.
+   - `source`: `"both"` (merges GitHub Trending and Trendshift.io).
+   - `language`: optional filter.
+2. **Select Target Repositories**: Use the returned merged list directly. Prioritize the top 15 repositories (Daily), 18 repositories (Weekly), or 20 repositories (Monthly).
+3. **Retrieve Details**: Call `github-trending-mcp:get_repo_details` with `repoPathOrId` (e.g. `owner/name`) to obtain the resolved metadata and README content snippet for each selected repository.
 
 ### Phase 2: Copywriting & Socratic Translation
-Translate raw specifications into Vietnamese:
-- **Ứng Dụng Thực Tế** (Hook): Highlight the human pain point. Formula: `[Problem/Objection] + nhưng/mà [Constraint/Hesitation]` (e.g. "lười dựng kịch bản"). Bold key words.
+Translate raw specifications and README content into Vietnamese:
+- **Nguồn** (Source): State where the project is trending (`GitHub`, `Trendshift`, or `Cả hai` + HN/Reddit/X mentions).
+- **Ứng Dụng Thực Tế** (Hook): Highlight the human pain point. Formula: `[Problem/Objection] + nhưng/mà [Constraint/Hesitation]` (e.g. "Muốn học lập trình nhưng sợ khô khan"). Bold key words.
 - **Điểm Độc Đáo** (Unique Value): Explain the tech with simple Socratic analogies. No raw technical jargon (like API, database, VRAM) without a direct translation/analogy.
 - **Tính Năng Nổi Bật** (Features): List 2-3 plain bullet points `•` (under 10 words each). No emojis or symbols.
 
@@ -45,23 +46,25 @@ Translate raw specifications into Vietnamese:
 - **Header**: `# Bản tin GitHub Trending [ngày DD/MM/YYYY | Tuần WW/YYYY | Tháng MM/YYYY]`.
 - **Metadata**: *Thời gian cập nhật: HH:MM, ngày DD/MM/YYYY*.
 - **Save Location**: Save to `reports/YYYY_MM/` directory based on the target period of the report. Create the folder if it doesn't exist.
-- **HTML Table Format**: Exact column widths: `5% | 10% | 25% | 35% | 25%`.
+- **HTML Table Format**: Exact column widths: `5% | 15% | 10% | 20% | 30% | 20%`.
 
 ```html
 <table>
   <thead>
     <tr>
       <th width="5%" align="center">#</th>
-      <th width="10%" align="left">Dự án</th>
-      <th width="25%" align="left">Ứng Dụng Thực Tế</th>
-      <th width="35%" align="left">Điểm Độc Đáo</th>
-      <th width="25%" align="left">Tính Năng Nổi Bật</th>
+      <th width="15%" align="left">Dự án</th>
+      <th width="10%" align="left">Nguồn xu hướng</th>
+      <th width="20%" align="left">Ứng Dụng Thực Tế</th>
+      <th width="30%" align="left">Điểm Độc Đáo (Socratic)</th>
+      <th width="20%" align="left">Tính Năng Nổi Bật</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td align="center">[Index]</td>
-      <td><strong><a href="[Repo_URL]">[Repo_Name]</a></strong></td>
+      <td><strong><a href="[Repo_URL]">[Repo_Name]</a></strong><br><small>[Language]</small></td>
+      <td>[Source_Label]</td>
       <td>[Hook_in_Vietnamese]</td>
       <td>[Analogy_in_Vietnamese]</td>
       <td>• [Feature 1]<br>• [Feature 2]</td>
@@ -71,5 +74,5 @@ Translate raw specifications into Vietnamese:
 ```
 
 ## ⚠️ Validation & Error Handling
-- **Edge Cases**: If descriptions are brief, perform a `search_web` for context. Handle API 403 Rate Limits by falling back to `gh api` or raw HTML scraping.
-- **Pre-save Checks**: No emojis in the features column. Ensure HTML column widths match exactly. Ensure no AI filler phrases remain.
+- **Edge Cases**: If details or READMEs are missing, search web or fetch via API. Ensure no emojis are included in the features column.
+- **Pre-save Checks**: Check that HTML column widths sum to exactly 100%. Check that no AI filler phrases remain.
