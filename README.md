@@ -53,7 +53,8 @@ graph TD
     ├── copywriting-psychologist/
     ├── efficient-web-research/
     ├── explain-like-socrates/
-    └── github-trending-layout-spec/
+    ├── github-trending-layout-spec/
+    └── github-trending-pipeline-runner/
 ```
 
 
@@ -65,6 +66,7 @@ graph TD
   - `copywriting-psychologist`: Guidance for writing hook headlines based on real-world user pain points.
   - `beautiful-prose` & `avoid-ai-writing`: Rules for natural prose style, stripping away common AI clichés (AI-isms).
   - `content-reviewer`: Quality Gate checklist, terminology filters, and self-correction loop workflows.
+  - `github-trending-pipeline-runner`: End-to-end operational pipeline runner, git automation, and publishing workflow.
 - `reports/`: Directory where published newsletter reports (Markdown format with HTML tables) are saved, categorized by month (e.g., [reports/2026_06/](reports/2026_06/)).
 - `AGENTS.md`: High-level orchestration guide at the workspace root directing the AI assistant through the newsletter compilation workflow.
 
