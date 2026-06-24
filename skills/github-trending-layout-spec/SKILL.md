@@ -46,25 +46,23 @@ The publication layout must strictly comply with the following mapping and templ
 
 ## 1. Data Mapping Schema
 
-The output HTML table consists of exactly 6 columns mapped as follows:
+The output HTML table consists of exactly 5 columns mapped as follows:
 
 *   **Column 1: `#` (width: 5%)**
     - Content: Project rank index.
     - Alignment: Centered.
-*   **Column 2: `Dự án` (width: 15%)**
+*   **Column 2: `Dự án` (width: 10%)**
     - Content: Bold repository name wrapped in a GitHub link, followed by main programming language in small text.
     - Format: `<strong><a href="[GitHub_URL]">[Tên_Repo]</a></strong><br><small>[Ngôn_Ngữ]</small>`
     - Alignment: Left.
-*   **Column 3: `Nguồn xu hướng` (width: 10%)**
-    - Content: Discovery source (`GitHub`, `Trendshift`, or `Cả hai`) with social mentions/discussion count (HN, Reddit, X) if available.
-    - Alignment: Left.
-*   **Column 4: `Ứng Dụng Thực Tế` (width: 20%)**
+*   **Column 3: `Ứng Dụng Thực Tế` (width: 20%)**
     - Content: User pain points and solution hook.
     - Alignment: Left.
-*   **Column 5: `Điểm Độc Đáo (Socratic)` (width: 30%)**
-    - Content: Socratic metaphor explaining the core technology.
+*   **Column 4: `Điểm Độc Đáo (Socratic)` (width: 35%)**
+    - Content: Structured Socratic metaphor and technical mechanism.
+    - Format: `<strong>[Tên_Ẩn_Dụ]</strong> - [Giải thích ẩn dụ]<br><strong>CƠ CHẾ KỸ THUẬT</strong>: [Giải thích cơ chế hoạt động thực tế]`
     - Alignment: Left.
-*   **Column 6: `Tính Năng Nổi Bật` (width: 20%)**
+*   **Column 5: `Tính Năng Nổi Bật` (width: 30%)**
     - Content: 2-3 bulleted features using standard solid black bullets (`•`). No emojis.
     - Alignment: Left.
 
@@ -77,18 +75,16 @@ The output HTML table consists of exactly 6 columns mapped as follows:
   <thead>
     <tr>
       <th width="5%" align="center">#</th>
-      <th width="15%" align="left">Dự án</th>
-      <th width="10%" align="left">Nguồn xu hướng</th>
+      <th width="10%" align="left">Dự án</th>
       <th width="20%" align="left">Ứng Dụng Thực Tế</th>
-      <th width="30%" align="left">Điểm Độc Đáo (Socratic)</th>
-      <th width="20%" align="left">Tính Năng Nổi Bật</th>
+      <th width="35%" align="left">Điểm Độc Đáo (Socratic)</th>
+      <th width="30%" align="left">Tính Năng Nổi Bật</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td align="center">[Xếp_Hạng]</td>
       <td><strong><a href="[GitHub_URL]">[Tên_Repo]</a></strong><br><small>[Ngôn_Ngữ]</small></td>
-      <td>[Nhãn_Nguồn]</td>
       <td>[Nội_Dung_Hook]</td>
       <td>[Phép_Ẩn_Dụ_Socratic]</td>
       <td>• [Tính năng 1]<br>• [Tính năng 2]</td>
@@ -116,7 +112,7 @@ Save files in monthly folders under `reports/YYYY_MM/` directory:
 ## 4. Validation Rules (Linter)
 
 Perform a final sanity check before writing to disk:
-1. **Width Validation:** Ensure the `width` attributes in `<th>` are exactly `5%`, `15%`, `10%`, `20%`, `30%`, and `20%`.
+1. **Width Validation:** Ensure the `width` attributes in `<th>` are exactly `5%`, `10%`, `20%`, `35%`, and `30%`.
 2. **HTML Parser Check:** Verify that all opening tags (`<strong>`, `<a>`, `<small>`, etc.) have corresponding closing tags.
 
 ---
