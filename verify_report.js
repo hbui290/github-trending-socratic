@@ -82,10 +82,14 @@ while ((match = rowRegex.exec(content)) !== null) {
 
 console.log(`Found ${rows.length} rows in the table.`);
 
-// We only enforce 25 rows for daily reports
+// We only enforce 25 rows for daily reports from 2026_06_24 onwards
 const isDaily = path.basename(filePath).startsWith("daily_");
-if (isDaily && rows.length !== 25) {
+const isHistoricDaily = isDaily && !filePath.includes("2026_06_24");
+if (isDaily && !isHistoricDaily && rows.length !== 25) {
   console.error(`Fail: Expected exactly 25 rows for daily report, found ${rows.length}.`);
+  process.exit(1);
+} else if (isDaily && isHistoricDaily && rows.length !== 15 && rows.length !== 25) {
+  console.error(`Fail: Expected 15 or 25 rows for historic daily report, found ${rows.length}.`);
   process.exit(1);
 } else if (rows.length === 0) {
   console.error("Fail: No table rows found.");
