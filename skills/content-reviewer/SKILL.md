@@ -40,7 +40,7 @@ This skill acts as a strict **Quality Gate (Critic-Builder)** to ensure visual a
 
 ---
 
-## When to Activate
+## When to Use
 
 Use this skill when:
 - Compiling daily, weekly, or monthly trending reports.
