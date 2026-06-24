@@ -1,6 +1,6 @@
 ---
 name: copywriting-psychologist
-description: "One sentence - what this skill does and when to invoke it"
+description: "Applies consumer psychology, persuasion frameworks, and audience awareness mapping to write high-conversion copy and hooks."
 risk: safe
 source: community
 date_added: "2026-04-04"
