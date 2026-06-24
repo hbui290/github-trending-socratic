@@ -12,6 +12,18 @@ using the right tool at the right depth, and stopping as soon as the question is
 
 ---
 
+## When to Use
+
+Use this skill when:
+- Performing web searches, accessing external URLs, or reading GitHub repository details.
+- Resolving technical details of trending libraries.
+- Standardizing research protocols for token-efficiency.
+
+Do NOT use this skill when:
+- Executing local scripting or checking local directory layouts.
+
+---
+
 ## Core Principle
 
 > **Fetch the minimum needed to answer. Skim before you dive. Stop when you can answer.**
