@@ -14,42 +14,14 @@ category: discipline
 
 ## Execution Workflow
 
-### 1. Fetch & Cache
+The technical execution of the pipeline is delegated to the **[Skill: [github-trending-pipeline-runner](skills/github-trending-pipeline-runner/SKILL.md)]**. Refer to it for the detailed operational procedures, commands, and git automation workflow.
 
-- **Scan Trending Listings:** Call `get_trending` (period, source="both", language, limit=25, date). When `source="both"`, the MCP tool automatically merges results from GitHub and Trendshift, deduplicates based on repository path, and labels each project with its source (`GitHub`, `Trendshift`, or `Cả hai`).
-- **Fetch Details:** Iterate through the deduplicated list, calling `get_repo_details` to retrieve the README and metadata.
-- **Write Cache:** Save all raw fetched data into a temporary JSON file at `github-trending-socratic-mcp/.temp_trending_data.json`.
+### High-Level Workflow Steps:
 
-> **IO Rule:** All subsequent steps must only read data from this temporary cache file. Do not invoke any external scraping or fetch tools after this step.
-
-### 2. Prepare Table
-
-- **\[Skill: github-trending-layout-spec\]** Prepare the empty HTML table structure with correct column width percentages (5% | 10% | 20% | 35% | 30%) according to Section 2 of the layout spec.
-
-### 3. Write & Fill Loop
-
-Iterate through the repositories in the cache. For each repository, perform the following steps sequentially:
-
-- **Research:** **\[Skill: efficient-web-research\]** Analyze the README or codebase:
-  - *Identify Pain Point (Why):* Find the motivation section, stripping away generic buzzwords (*fast, secure, scalable*) to clarify the real-world problem developers face.
-  - *Identify Core Mechanism (How):* Focus on the core technology (e.g., C binary, SQLite under the hood, GitHub Actions workflows, Local LLM, sandbox, MCP server).
-  - *Brainstorm Metaphor:* Draw inspiration from the repo name, logo, or data flow (e.g., cache ➔ refrigerator, gateway ➔ security guard, codebase memory ➔ map).
-- **Write Hook:** **\[Skill: copywriting-psychologist\]** Write the **Ứng Dụng Thực Tế** column.
-- **Socratic Metaphor:** **\[Skill: explain-like-socrates\]** Write the **Điểm Độc Đáo (Socratic)** column.
-- **Editorial Review:** **\[Skill: avoid-ai-writing / beautiful-prose\]** Remove AI-isms and optimize for natural, fluent tech Vietnamese.
-- **Fill Table:** Populate the HTML table row according to Section 1 and Section 2 of the layout spec.
-
-### 4. Verify & Publish (Quality Gate)
-
-- **Pre-Publish Gate (Fact-Forcing):** **\[Skill: content-reviewer\]** Before saving the final `.md` report, the agent must execute the verification checks (using a local validation script like `verify_report.js` or a systematic row-by-row manual check).
-- **Strict Verification Rubric:**
-  - Check that rankings start from 1 to 25.
-  - Ensure all 25 projects are present and repo paths/GitHub URLs are 100% correct.
-  - Ensure every copywriting hook strictly uses the pattern: `<strong>Muốn/Cần [mục tiêu]</strong> nhưng <strong>ngại/sợ/lo ngại [rào cản]</strong>.`
-  - Ensure every Socratic metaphor includes the bold title, life analogy, and `<strong>CƠ CHẾ KỸ THUẬT</strong>:` pointing to concrete codebase implementations.
-  - Check that the featured list contains only solid black bullets (`•`) and no emojis.
-- **Gate Enforcement (Deny/Allow):** If any check fails, the agent must *deny* the save operation, log the exact failed ranks and formatting errors, rewrite the non-compliant rows, and re-run the verification. Saving the file is only *allowed* once 100% of the checklist items pass.
-- **Save & Clean:** Write the validated `.md` report to the designated monthly directory specified in Section 3 of the layout spec, then delete the temporary cache file.
+1. **Fetch & Cache:** Call `get_trending` and `get_repo_details` to retrieve trending repositories, then save the raw data into a temporary JSON file at `github-trending-socratic-mcp/.temp_trending_data.json`.
+2. **Prepare Table:** Initialize the HTML table structure following the **[Skill: [github-trending-layout-spec](skills/github-trending-layout-spec/SKILL.md)]** layout guidelines.
+3. **Write & Fill Loop:** Iterate through cached repositories, applying **[Skill: [efficient-web-research](skills/efficient-web-research/SKILL.md)]**, **[Skill: [copywriting-psychologist](skills/copywriting-psychologist/SKILL.md)]**, and **[Skill: [explain-like-socrates](skills/explain-like-socrates/SKILL.md)]** to draft hooks and Socratic metaphors, followed by editorial reviews to remove AI-isms.
+4. **Verify & Publish (Quality Gate):** Run `verify_report.js` and apply **[Skill: [content-reviewer](skills/content-reviewer/SKILL.md)]** for validation. Once 100% compliant, save the report and run git automation to push and merge the PR.
 
 ## Style & Format Reference
 
