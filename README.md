@@ -32,7 +32,7 @@ graph TD
 - **🔗 Intelligent Deduplication**: Automatically merges matching repositories, keeping GitHub statistics (stars, forks) while augmenting them with Trendshift tags and authors.
 - **💬 Social Sentiment Integration**: Gathers and exposes discussion indicators from online tech hubs (Hacker News, Reddit, X) directly inside the report.
 - **🧠 Socratic Copywriting Engine**: Translates complex codebases (e.g., peer-to-peer databases, WebAssembly runtimes) into everyday analogies (e.g., office assistants, refrigerator drawers).
-- **📋 Premium HTML Table Layouts**: Generates strict, responsive HTML tables conforming to exact width constraints (`5% | 15% | 10% | 20% | 30% | 20%`) for a premium reading experience across all devices.
+- **📋 Premium HTML Table Layouts**: Generates strict, responsive HTML tables conforming to exact width constraints (`5% | 10% | 20% | 35% | 30%`) for a premium reading experience across all devices.
 - **🛡️ Quality Assurance Linter**: Automatically validates HTML tag closure and formatting widths before publishing.
 
 ---
@@ -49,6 +49,7 @@ graph TD
 └── skills/
     ├── avoid-ai-writing/
     ├── beautiful-prose/
+    ├── content-reviewer/
     ├── copywriting-psychologist/
     ├── efficient-web-research/
     ├── explain-like-socrates/
@@ -63,6 +64,7 @@ graph TD
   - `explain-like-socrates`: Standard Socratic analogy formulation rules.
   - `copywriting-psychologist`: Guidance for writing hook headlines based on real-world user pain points.
   - `beautiful-prose` & `avoid-ai-writing`: Rules for natural prose style, stripping away common AI clichés (AI-isms).
+  - `content-reviewer`: Quality Gate checklist, terminology filters, and self-correction loop workflows.
 - `reports/`: Directory where published newsletter reports (Markdown format with HTML tables) are saved, categorized by month (e.g., [reports/2026_06/](reports/2026_06/)).
 - `AGENTS.md`: High-level orchestration guide at the workspace root directing the AI assistant through the newsletter compilation workflow.
 
@@ -125,6 +127,18 @@ Simply start a chat in your workspace and prompt the AI in Vietnamese.
 The agent will read the pipeline directives from `AGENTS.md`, fetch data via the MCP server, and generate a validated markdown report in `reports/`.
 
 > **Note on Output Language**: By default, the compiled newsletters are generated in **Vietnamese**. If you want to compile reports in another language (e.g., English, Japanese), you will need to customize the Persona and Style guidelines inside `AGENTS.md` and adjust the corresponding localized copywriting skills accordingly.
+
+---
+
+## 🛡️ Report Validation
+
+To manually verify that a generated report conforms to the strict layout, hook structures, Socratic metaphor rules, and jargon whitelists, run the following verification script from the repository root:
+
+```bash
+node verify_report.js [path/to/report.md]
+```
+
+If no path is provided, it will automatically locate and audit the latest compiled markdown report in the `reports/` directory.
 
 ---
 
